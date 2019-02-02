@@ -1,20 +1,44 @@
 import React ,{Component} from 'react';
 import { StyleSheet, Text, View ,Image,TextInput,TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import {connect} from 'react-redux'
+
+class Login extends Component {
+
+  state={
+    phonenumber:''
+  }
 
 
-export default class Login extends Component {
- render() {
+  signUp=()=>{
+      const abc=this.state.phonenumber
+    
+    this.props.dispatch({
+      type:'New_items',
+      value:abc
+    })
+      Actions.Signup()
+    
+    
+    
+  }
+  
+
+  render() {
+     // console.warn("MainP"+JSON.stringify(this.props))
         return (
           <View style={styles.container}>
             <View style={styles.headerContainer}>
                <Text style={{fontSize:30}}>Ready to head Out!</Text>
             </View>
             <View style={styles.bodyContainer}>
-            <Text>+91</Text><TextInput placeholder='Phone Number' placeholderTextColor="black"  style={styles.inputbox}></TextInput>
-            <TouchableOpacity style={styles.btn} onPress={()=>Actions.Signup()}>
+            <Text>+91</Text><TextInput placeholder='Phone Number' placeholderTextColor="black"  style={styles.inputbox} 
+              onChangeText={(phonenumber)=>this.setState({phonenumber})}
+            ></TextInput>
+            <TouchableOpacity style={styles.btn} onPress={this.signUp}>
               <Text style={styles.TextStyle}>Log in</Text>
             </TouchableOpacity>
+            
             </View>
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={{padding:20}}>
@@ -35,6 +59,17 @@ export default class Login extends Component {
           );
         }
       }
+
+
+const mapStateToProps=(state,props)=>{
+  return{
+    items:state.details.items
+  }
+}
+
+
+export default connect(mapStateToProps)(Login)
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

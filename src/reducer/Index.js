@@ -1,6 +1,6 @@
-import {combineReducer} from 'redux'
-import phoneno from './phoneno'
+import {combineReducers} from 'redux'
+import details from './Details'
 
-export default combineReducer({
-    phoneno
+export default combineReducers({
+    details
 })

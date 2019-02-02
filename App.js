@@ -8,16 +8,9 @@ import Signup from './src/components/Login/Signup';
 import {Provider} from "react-redux";
 
 import {createStore} from "redux"
+import rootReducer from './src/reducer/Index'
 
-const initialState{
- items:{
-   phone_no:""
- }
-}
 
-const rootReducer=(state,action)=>{
-  return state
-}
 
 const store = createStore(rootReducer)
 
